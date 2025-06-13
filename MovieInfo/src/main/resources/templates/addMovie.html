@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add or Update Movie</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            padding: 40px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background-color: white;
+            padding: 25px;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1 th:text="${movie.id != null} ? 'Update Movie' : 'Add New Movie'"></h1>
+    <form th:action="@{/movies/add}" th:object="${movie}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <label>Name:</label>
+        <input type="text" th:field="*{name}" required />
+        
+        <label>Genre:</label>
+        <input type="text" th:field="*{genre}" required />
+        
+        <label>Rating:</label>
+        <input type="number" th:field="*{rating}" step="0.1" required />
+        
+        <label>Release Year:</label>
+        <input type="number" th:field="*{releaseYear}" required />
+        
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
